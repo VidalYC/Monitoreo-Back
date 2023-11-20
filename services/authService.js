@@ -10,12 +10,21 @@ const signIn = async (params) => {
   try {
     const user = await User.getOneUser(params.username);
     if (!user) {
-      throw new Error("User do not exist!");
+      throw new Error("User does not exist!");
     } else {
       if (user.password !== params.password) {
-        throw new Error("Password do not match!");
+        throw new Error("Password does not match!");
       } else {
-        const token = jwt.sign({ user }, process.env.JWT_SECRET);
+        // Crear un objeto personalizado sin incluir la contraseña
+        const userWithoutPassword = {
+          id: user.id,
+          username: user.username,
+          // Puedes incluir más información según tus necesidades
+        };
+
+        // Generar el token utilizando el nuevo objeto
+        const token = jwt.sign({ user: userWithoutPassword }, process.env.JWT_SECRET);
+
         return { userId: user.id, username: user.username, token };
       }
     }
