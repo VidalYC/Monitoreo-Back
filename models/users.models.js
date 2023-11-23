@@ -20,6 +20,15 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING,
     },
+    nombre: {
+      type: DataTypes.STRING,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+    },
+    saldo: {
+      type: DataTypes.STRING,
+    },
   },
   {
     // Other model options go here

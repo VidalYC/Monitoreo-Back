@@ -42,7 +42,29 @@ const signUp = async (params) => {
   }
 };
 
+const updateOneUser = async (userId, changes) => {
+  try {
+    const updateUser = await User.updateOneUser(userId, changes);
+    return updateUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllUser = async (filterParams) => {
+  try {
+    
+    const allClientes = await User.getUser(filterParams);
+    return allClientes;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 module.exports = {
   signIn,
   signUp,
+  updateOneUser,
+  getAllUser
 };
